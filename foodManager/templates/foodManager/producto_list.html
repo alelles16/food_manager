@@ -1,14 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    {% for producto in productos %}
-        {{ producto }}
-    {% endfor %}
-</body>
-</html>
+
+{% extends 'foodManager/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+<div class="wrap">
+
+    <div class="list-products">
+
+        {% for producto in productos %}
+
+        <div class="card-list box-shadow">
+
+            <div class="info-list">
+                <div class="info-list-name">
+                    <p> {{ producto.nombre }} </p>
+                </div>
+                <div class="info-list-details color-gray">
+                    <p> {{ producto.marca }} </p>
+                    <p class="separator">-</p>
+                    <p>Cantidad: {{ producto.cantidad_actual }} unidad(es) </p>
+                </div>
+            </div>
+
+            <div class="info-consumir">
+                <a href="" class="btn-rounded btn-blue btn-icon"> 
+                <img src="{% static 'img/icons/add-circular-outlined-button.svg' %}" alt="Plus icon"> 
+                Consumir </a>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
