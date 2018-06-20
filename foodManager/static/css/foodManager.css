@@ -10,6 +10,18 @@ p {
     margin: 0.4rem auto;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.badge-gray {
+    background-color: #e0e3e6;
+    color: #6d7a84;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
 .color-gray {
     color: #a3b3c0;
 }
@@ -34,6 +46,13 @@ p {
     width: 100%;
 }
 
+.card-space {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+} 
+
 .card-list {
     display: flex;
     justify-content: space-between;
@@ -53,6 +72,33 @@ p {
 }
 
 .card-list .info-list .info-list-name p {
+    font-size: 14px;
+}
+
+.card-product {
+    width: 420px;
+    height: auto;
+}
+
+.card-product .card-header {
+    background-color: #1caff6;
+    padding: 16px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px 4px 0 0;
+}
+
+.card-product .card-body {
+    padding: 16px;
+}
+
+.card-product .card-body .card-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
     font-size: 14px;
 }
 
