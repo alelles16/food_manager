@@ -7,7 +7,7 @@ class Producto (models.Model):
     cantidad_actual = models.PositiveIntegerField(default=0)
 
     def __str__ (self):
-        return self.nombre
+        return '{} - {}'.format(self.nombre, self.cantidad_actual)
 
 class Registro (models.Model):
     producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
