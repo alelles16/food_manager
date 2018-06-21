@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto, Registro
 from .forms import ConsumirForm
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 
 def producto_list(request):
     productos = Producto.objects.order_by('-cantidad_actual')
@@ -11,6 +12,7 @@ def producto_list(request):
 
     return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido})
 
+@login_required
 def consumir_producto(request, pk):
     producto = get_object_or_404(Producto, pk=pk)
 
