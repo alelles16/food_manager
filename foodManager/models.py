@@ -1,10 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models import Sum
 
 class Producto (models.Model):
     nombre = models.CharField(max_length=200)
     marca = models.CharField(max_length=200)
     cantidad_actual = models.PositiveIntegerField(default=0)
+
+    def cantidad_comprada(self):
+        total = self.registro_set.all().aggregate(total = Sum('cantidad_comprada')).get('total')
+        return total or 0
 
     def __str__ (self):
         return '{} - {}'.format(self.nombre, self.cantidad_actual)

@@ -1,5 +1,5 @@
 {% extends 'foodManager/base.html' %}
-{% block content %}
+{% block content %} 
 {% load staticfiles %}
 <div class="wrap">
     <div class="card-space">
@@ -12,47 +12,49 @@
             </div>
             {% elif error = 'free' %}
             <div class="alert alert-success">
-                Listo!
+                Listo! Buen provecho :)
             </div>
+            {% elif error = 'warning' %}
+            <div class="alert alert-warning">
+                Ingresa un valor correcto en el campo cantidad
+            </div> 
             {% endif %}
 
-            <div class="box-shadow">
-                <div class="card-header">
-                    <h4>
-                        {{ producto.nombre }}
-                    </h4>
+            <div class="card-header">
+                <h4>
+                    {{ producto.nombre }}
+                </h4>
+            </div>
+            <div class="card-info">
+                <div class="info-cantidad">
+                    <h5>
+                        Cantidad: {{ producto.cantidad_actual }}
+                    </h5>
                 </div>
-                <div class="card-body">
-                    <div class="card-info">
-                        <div class="info-cantidad">
-                            <h5 class="badge-gray">
-                                Cantidad: {{ producto.cantidad_actual }}
-                            </h5>
-                        </div>
-                        <div class="info-marca">
-                            <h5>
-                                Marca: {{ producto.marca }}
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="card-form">
-                        <form method="POST" class="form-control">
-                            {% csrf_token %} 
-                            {{ form.as_p }}
-                            <button type="submit" class="btn-rounded btn-icon btn-success">
-                                <img src="{% static 'img/icons/checkmark-outline.svg' %}" alt="">
-                                Listo
-                            </button>
-                        </form>
-                    </div>
+                <div class="info-marca">
+                    <h5>
+                        Marca: {{ producto.marca }}
+                    </h5>
                 </div>
+            </div>
+            <div class="card-form">
+                <form method="POST" class="form-control">
+                    {% csrf_token %} 
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-rounded btn-icon btn-success">
+                        <img src="{% static 'img/icons/checkmark-outline.svg' %}" alt=""> Listo
+                    </button>
+                </form>
             </div>
 
         </div>
 
-        <a href="{% url 'name' %}" class="btn-icon btn-cian btn-rounded">
-            Refresar
-        </a>
+        <div class="card-return">
+            <a href="{% url 'main' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/back-left-arrow-circular-button-outline.svg' %}" alt="">
+                Regresar
+            </a>
+        </div>
 
     </div>
 </div>

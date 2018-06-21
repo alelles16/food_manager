@@ -1,7 +1,5 @@
-
-{% extends 'foodManager/base.html' %}
-
-{% block content %}
+{% extends 'foodManager/base.html' %} 
+{% block content %} 
 {% load staticfiles %}
 <div class="wrap">
 
@@ -19,18 +17,43 @@
                     <p> {{ producto.marca }} </p>
                     <p class="separator">-</p>
                     <p>Cantidad: {{ producto.cantidad_actual }} unidad(es) </p>
+                    <p class="separator">-</p>
+                    <p>Vendido: {{ producto.cantidad_comprada }}</p>
                 </div>
             </div>
 
             <div class="info-consumir">
-                <a href="{% url 'consumir_producto' pk=producto.pk %}" class="btn-rounded btn-blue btn-icon"> 
-                <img src="{% static 'img/icons/add-circular-outlined-button.svg' %}" alt="Plus icon"> 
-                Consumir </a>
+                <a href="{% url 'consumir_producto' pk=producto.pk %}" class="btn-rounded btn-blue btn-icon">
+                    <img src="{% static 'img/icons/add-circular-outlined-button.svg' %}" alt="Plus icon"> Consumir </a>
             </div>
 
         </div>
 
         {% endfor %}
+
+        <div class="bagde bagde-win btn-icon">
+
+            <img src="{% static 'img/icons/circular-outlined-badge-with-ribbon-recognition-prize-symbol.svg' %}" alt="">
+            Producto más consumido
+
+        </div>
+
+        <div class="card-list box-shadow">
+
+            <div class="info-list">
+                <div class="info-list-name">
+                    <p> {{ mas_vendido.nombre }} </p>
+                </div>
+                <div class="info-list-details color-gray">
+                    <p> {{ mas_vendido.marca }} </p>
+                    <p class="separator">-</p>
+                    <p>Cantidad: {{ mas_vendido.cantidad_actual }} unidad(es) </p>
+                    <p class="separator">-</p>
+                    <p>Vendido: {{ mas_vendido.cantidad_comprada }}</p>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 

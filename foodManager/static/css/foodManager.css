@@ -12,6 +12,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+    font-weight: inherit;
 }
 
 button {
@@ -49,6 +50,26 @@ button {
     color: #02BB6C;
 }
 
+.alert-warning {
+    background-color: #f6ef60;
+    color: #c9bf03;
+}
+
+.bagde {
+    padding: 12px 0;
+    margin: 16px auto;
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bagde-win {
+    background-color: #fce176;
+    color: #d2ac14;
+}
+
 .main {
     width: 100%;
     min-height: 100vh;
@@ -58,7 +79,7 @@ button {
 
 .wrap {
     width: 100%;
-    max-width: 1024px;
+    max-width: 640px;
     margin: 0;
     padding: 16px;
 }
@@ -75,6 +96,10 @@ button {
     align-items: center;
     width: 100%;
 } 
+
+.card-space .card-return {
+    margin-top: 16px;
+}
 
 .card-list {
     display: flex;
@@ -99,36 +124,44 @@ button {
 }
 
 .card-product {
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     height: auto;
 }
 
 .card-product .card-header {
     background-color: #1caff6;
-    padding: 16px;
+    padding: 24px 0;
     text-align: center;
     color: #fff;
-    font-size: 16px;
     border-radius: 4px 4px 0 0;
 }
 
-.card-product .card-body {
-    padding: 16px;
+.card-product .card-header > h4 {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
 }
 
-.card-product .card-body .card-info {
+.card-product .card-info {
+    background-color: #eff6ff;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: baseline;
-    font-size: 14px;
-    font-weight: 400;
-    margin: 16px auto 24px auto;
+    width: 100%;
+    padding: 32px 0;
 }
 
-.card-product .card-body .card-form {
-    border-top: 1px solid #e0e3e6;
+.card-product .card-info h5 {
+    font-size: 13px;
+    color: #909fad;
+}
+
+.card-product .card-form {
+    border: 2px solid #eff6ff;
+    border-radius: 0 0 4px 4px;
 }
 
 .card-form > form.form-control {
@@ -136,16 +169,18 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 24px;
 }
 
 .card-form > form.form-control > p {
-    margin: 32px auto;
+    margin-bottom: 24px;
 }
 
 .card-form > form.form-control > p > input {
     outline: none;
-    border-radius: 4px;
+    border-radius: 2px;
     border: 1px solid #e0e3e6;
+    padding-left: 8px;
     height: 20px;
 }
 
@@ -186,8 +221,12 @@ button {
     color: #fff;
 }
 
-.btn-cian {
-    
+.btn-gray {
+    background-color: #eff6ff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    color: #909fad;
 }
 
 .btn-blue:hover,
