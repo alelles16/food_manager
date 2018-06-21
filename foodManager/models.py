@@ -13,7 +13,7 @@ class Registro (models.Model):
     producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
     usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     fecha = models.DateTimeField(blank=True, null=True, editable=False)
-    cantidad_comprada = models.PositiveIntegerField(default=0)
+    cantidad_comprada = models.PositiveIntegerField(default=0, verbose_name='Cantidad')
 
     def nuevo_registro (self):
         self.fecha = timezone.now()
