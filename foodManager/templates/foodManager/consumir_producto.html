@@ -1,4 +1,6 @@
-{% extends 'foodManager/base.html' %} {% block content %}
+{% extends 'foodManager/base.html' %}
+{% block content %}
+{% load staticfiles %}
 <div class="wrap">
     <div class="card-space">
 
@@ -35,14 +37,23 @@
                     </div>
                     <div class="card-form">
                         <form method="POST" class="form-control">
-                            {% csrf_token %} {{ form.as_p }}
-                            <button type="submit" class="btn-rounded btn-success">Listo</button>
+                            {% csrf_token %} 
+                            {{ form.as_p }}
+                            <button type="submit" class="btn-rounded btn-icon btn-success">
+                                <img src="{% static 'img/icons/checkmark-outline.svg' %}" alt="">
+                                Listo
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <a href="{% url 'name' %}" class="btn-icon btn-cian btn-rounded">
+            Refresar
+        </a>
+
     </div>
 </div>
 {% endblock %}
