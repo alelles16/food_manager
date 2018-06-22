@@ -9,15 +9,27 @@ from django.contrib.auth.models import User
 def producto_list(request):
     productos = Producto.objects.order_by('-cantidad_actual')
 
-    cantidad_mas_usuario = Registro.objects.all().values('usuario').annotate(total_consumido = Sum('cantidad_comprada')).order_by('-total_consumido').first()
-    mas_usuario = User.objects.get(pk = cantidad_mas_usuario.get('usuario'))
+    def cantidad(consult):
+        return Registro.objects.all().values(consult).annotate(total = Sum('cantidad_comprada')).order_by('-total').first()
+
+    cantidad_mas_usuario = cantidad('usuario')
     print(cantidad_mas_usuario)
-    print(mas_usuario)
+    cantidad_mas_vendida = cantidad('producto')    
+    print(cantidad_mas_vendida)
 
-    cantidad_mas_vendida = Registro.objects.all().values('producto').annotate(total_vendido = Sum('cantidad_comprada')).order_by('-total_vendido').first()
-    mas_vendido = Producto.objects.get(pk = cantidad_mas_vendida.get('producto'))
+    try:
+        mas_usuario = User.objects.get(pk = cantidad_mas_usuario.get('usuario'))
+    except Exception as e:
+        print(e)
+        mas_usuario = None
 
-    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido, 'mas_usuario' : mas_usuario})
+    try:
+        mas_vendido = Producto.objects.get(pk = cantidad_mas_vendida.get('producto'))
+    except Exception as e:
+        print(e)
+        mas_vendido = None
+
+    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido, 'mas_usuario' : mas_usuario, 'cantidad_mas_usuario' : cantidad_mas_usuario})
 
 @login_required
 def consumir_producto(request, pk):

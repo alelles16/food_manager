@@ -3,6 +3,25 @@
 {% load staticfiles %}
 <div class="wrap">
 
+    <header class="wheader">
+
+        <div class="wrap-header">
+            {% if user.is_authenticated %}
+            <p>Bienvenid@, {{ user.first_name }}!</p>
+            <a href="{% url 'logout' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/lock-circular-padlock-outline-tool-symbol.svg' %}" alt="">
+                Salir
+            </a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/user-outline-male-symbol-of-interface.svg' %}" alt="">
+                Ingresar
+            </a>
+            {% endif %}
+        </div>
+
+    </header>
+
     <div class="list-products">
 
         {% for producto in productos %}
@@ -64,11 +83,22 @@
 
         <div class="card-list box-shadow">
 
-            <div class="info-list">
-                <div class="info-list-name">
-                    <p> {{ mas_usuario.first_name }} </p>
+            {% if mas_usuario == None %}
+                <div class="info-list">
+                    <div class="info-list-name">
+                        <p> Aún no hay compras realizadas </p>
+                    </div>
                 </div>
-            </div>
+            {% else %}
+                <div class="info-list">
+                    <div class="info-list-name">
+                        <p> {{ mas_usuario.first_name }} </p>
+                    </div>
+                    <div class="info-list-details color-gray">
+                        <p>Cantidad consumida: {{ cantidad_mas_usuario.total }} unidad(es) </p>
+                    </div>
+                </div>
+            {% endif %}
 
         </div>
 

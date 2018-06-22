@@ -55,6 +55,28 @@ button {
     color: #c9bf03;
 }
 
+header.wheader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+header.wheader .wrap-header {
+    width: calc(100% - 32px);
+    max-width: 640px;
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header.wheader .wrap-header p {
+    width: auto;
+    margin: 0 8px;
+}
+
 .bagde {
     padding: 12px 0;
     margin: 16px auto;
@@ -74,11 +96,12 @@ button {
     width: 100%;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrap {
-    width: 100%;
+    width: calc(100% - 32px);
     max-width: 640px;
     margin: 0;
     padding: 16px;
@@ -170,6 +193,10 @@ button {
     align-items: center;
     flex-direction: column;
     padding: 24px;
+}
+
+.card-form > form.form-control table {
+    margin: 12px 0;
 }
 
 .card-form > form.form-control > p {
