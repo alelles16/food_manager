@@ -4,13 +4,20 @@ from .models import Producto, Registro
 from .forms import ConsumirForm
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def producto_list(request):
     productos = Producto.objects.order_by('-cantidad_actual')
+
+    cantidad_mas_usuario = Registro.objects.all().values('usuario').annotate(total_consumido = Sum('cantidad_comprada')).order_by('-total_consumido').first()
+    mas_usuario = User.objects.get(pk = cantidad_mas_usuario.get('usuario'))
+    print(cantidad_mas_usuario)
+    print(mas_usuario)
+
     cantidad_mas_vendida = Registro.objects.all().values('producto').annotate(total_vendido = Sum('cantidad_comprada')).order_by('-total_vendido').first()
     mas_vendido = Producto.objects.get(pk = cantidad_mas_vendida.get('producto'))
 
-    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido})
+    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido, 'mas_usuario' : mas_usuario})
 
 @login_required
 def consumir_producto(request, pk):

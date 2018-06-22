@@ -131,7 +131,7 @@ button {
 
 .card-product .card-header {
     background-color: #1caff6;
-    padding: 24px 0;
+    padding: 18px 0;
     text-align: center;
     color: #fff;
     border-radius: 4px 4px 0 0;
@@ -151,7 +151,7 @@ button {
     justify-content: space-around;
     align-items: baseline;
     width: 100%;
-    padding: 32px 0;
+    padding: 28px 0;
 }
 
 .card-product .card-info h5 {

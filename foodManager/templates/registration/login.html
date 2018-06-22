@@ -1,0 +1,55 @@
+{% extends "foodManager/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<div class="wrap">
+    <div class="card-space">
+    
+        <div class="card-product">
+
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    Upss! Usuario y/o contraseña incorrectos
+                </div>
+            {% endif %}
+
+            <div class="card-header">
+                <h4>
+                    Login
+                </h4>
+            </div>
+
+            <div class="card-form">
+                <form method="POST" action="{% url 'login' %}" class="form-control">
+                    {% csrf_token %}
+                    <table>
+                    <tr>
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                    </table>
+
+                    <button type="submit" value="submit" class="btn-rounded btn-icon btn-success">
+                        <img src="{% static 'img/icons/checkmark-outline.svg' %}" alt=""> Listo
+                    </button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            </div>
+
+        </div>
+
+        <div class="card-return">
+            <a href="{% url 'main' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/back-left-arrow-circular-button-outline.svg' %}" alt="">
+                Regresar
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
