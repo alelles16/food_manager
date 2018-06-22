@@ -169,7 +169,6 @@ header.wheader .wrap-header p {
 .card-product .card-info {
     background-color: #eff6ff;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: baseline;
@@ -180,6 +179,24 @@ header.wheader .wrap-header p {
 .card-product .card-info h5 {
     font-size: 13px;
     color: #909fad;
+}
+
+.card-product .card-info .info-list-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 640px) {
+    .card-list .info-list .info-list-details  {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card-list .info-list .info-list-details > p {
+        margin: 4px 0;
+    }
+    .separator {
+        display: none;
+    }
 }
 
 .card-product .card-form {
@@ -196,7 +213,7 @@ header.wheader .wrap-header p {
 }
 
 .card-form > form.form-control table {
-    margin: 12px 0;
+    margin: 16px 0 32px 0;
 }
 
 .card-form > form.form-control > p {

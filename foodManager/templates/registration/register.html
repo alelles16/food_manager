@@ -1,0 +1,40 @@
+{% extends "foodManager/base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<div class="wrap">
+    <div class="card-space">
+    
+        <div class="card-product">
+
+            <div class="card-header">
+                <h4>
+                    Registro
+                </h4>
+            </div>
+
+            <div class="card-form">
+                <form method="POST" action="{% url 'register' %}" class="form-control">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" value="Register" class="btn-rounded btn-icon btn-success">
+                        <img src="{% static 'img/icons/checkmark-outline.svg' %}" alt=""> Listo
+                    </button>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            </div>
+
+        </div>
+
+        <div class="card-return">
+            <a href="{% url 'main' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/back-left-arrow-circular-button-outline.svg' %}" alt="">
+                Regresar
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

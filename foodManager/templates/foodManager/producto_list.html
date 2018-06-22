@@ -13,9 +13,13 @@
                 Salir
             </a>
             {% else %}
-            <a href="{% url 'login' %}" class="btn-icon btn-gray btn-rounded">
+            <a style="margin-right: 8px" href="{% url 'login' %}" class="btn-icon btn-gray btn-rounded">
                 <img src="{% static 'img/icons/user-outline-male-symbol-of-interface.svg' %}" alt="">
                 Ingresar
+            </a>
+            <a href="{% url 'register' %}" class="btn-icon btn-gray btn-rounded">
+                <img src="{% static 'img/icons/user-outline-male-symbol-of-interface.svg' %}" alt="">
+                Registro
             </a>
             {% endif %}
         </div>
@@ -59,18 +63,30 @@
 
         <div class="card-list box-shadow">
 
-            <div class="info-list">
-                <div class="info-list-name">
-                    <p> {{ mas_vendido.nombre }} </p>
+            {% if mas_vendido == None %}
+
+                <div class="info-list">
+                    <div class="info-list-details color-gray">
+                        <p> Aún no hay productos consumidos. </p>
+                    </div>
                 </div>
-                <div class="info-list-details color-gray">
-                    <p> {{ mas_vendido.marca }} </p>
-                    <p class="separator">-</p>
-                    <p>Cantidad: {{ mas_vendido.cantidad_actual }} unidad(es) </p>
-                    <p class="separator">-</p>
-                    <p>Vendido: {{ mas_vendido.cantidad_comprada }}</p>
+
+            {% else %}
+
+                <div class="info-list">
+                    <div class="info-list-name">
+                        <p> {{ mas_vendido.nombre }} </p>
+                    </div>
+                    <div class="info-list-details color-gray">
+                        <p> {{ mas_vendido.marca }} </p>
+                        <p class="separator">-</p>
+                        <p>Cantidad: {{ mas_vendido.cantidad_actual }} unidad(es) </p>
+                        <p class="separator">-</p>
+                        <p>Vendido: {{ mas_vendido.cantidad_comprada }}</p>
+                    </div>
                 </div>
-            </div>
+
+            {% endif %}
 
         </div>
 
@@ -85,8 +101,8 @@
 
             {% if mas_usuario == None %}
                 <div class="info-list">
-                    <div class="info-list-name">
-                        <p> Aún no hay compras realizadas </p>
+                    <div class="info-list-details color-gray">
+                        <p> Aún no hay productos consumidos. </p>
                     </div>
                 </div>
             {% else %}

@@ -5,6 +5,18 @@ from .forms import ConsumirForm
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+def register(request):
+    if request.method == "POST":
+        f = UserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return redirect('main')
+    else: 
+        f = UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': f})
 
 def producto_list(request):
     productos = Producto.objects.order_by('-cantidad_actual')
