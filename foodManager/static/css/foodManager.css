@@ -228,6 +228,10 @@ header.wheader .wrap-header p {
     height: 20px;
 }
 
+.card-form .form-control.register > p {
+    margin: 1em 0 !important;
+}
+
 .box-shadow { 
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); 
 }

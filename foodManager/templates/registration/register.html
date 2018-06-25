@@ -14,7 +14,7 @@
             </div>
 
             <div class="card-form">
-                <form method="POST" action="{% url 'register' %}" class="form-control">
+                <form method="POST" action="{% url 'register' %}" class="form-control register">
                     {% csrf_token %}
                     {{ form.as_p }}
 
