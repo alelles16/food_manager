@@ -16,7 +16,10 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
-from .serializers import ProductoSerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
+
+from .serializers import ProductoSerializer, UserSerializer
 
 def register(request):
     if request.method == "POST":
@@ -34,11 +37,6 @@ def producto_list(request):
 
     def cantidad(consult):
         return Registro.objects.all().values(consult).annotate(total = Sum('cantidad_comprada')).order_by('-total').first()
-
-    cantidad_mas_usuario = cantidad('usuario')
-    print(cantidad_mas_usuario)
-    cantidad_mas_vendida = cantidad('producto')    
-    print(cantidad_mas_vendida)
 
     try:
         mas_usuario = User.objects.get(pk = cantidad_mas_usuario.get('usuario'))
@@ -101,7 +99,7 @@ def produto_list_api(request):
         serializer = ProductoSerializer(productos, many=True)
         return JSONResponse(serializer.data)
     elif request.method == 'POST':
-        data = JSONParser().pase(request)
+        data = JSONParser().parse(request)
         serializer = ProductoSerializer(data = data)
         if serializer.is_valid():
             serializer.save()
@@ -129,3 +127,11 @@ def producto_detail_api(request, pk):
     elif request.method == 'DELETE':
         serie.delete()
         return HttpResponse(status=204)
+
+class User_list_api(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class User_detail_api(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
