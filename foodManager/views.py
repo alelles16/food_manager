@@ -19,7 +19,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from .serializers import ProductoSerializer, UserSerializer
+from .serializers import ProductoSerializer, UserSerializer, RegistroSerializer
+
+from django_filters.rest_framework import DjangoFilterBackend
 
 def register(request):
     if request.method == "POST":
@@ -37,6 +39,9 @@ def producto_list(request):
 
     def cantidad(consult):
         return Registro.objects.all().values(consult).annotate(total = Sum('cantidad_comprada')).order_by('-total').first()
+
+    cantidad_mas_vendida = cantidad('producto')
+    cantidad_mas_usuario = cantidad('usuario')
 
     try:
         mas_usuario = User.objects.get(pk = cantidad_mas_usuario.get('usuario'))
@@ -131,7 +136,26 @@ def producto_detail_api(request, pk):
 class User_list_api(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('username','email')
+    search_fields = ('username','email','first_name')
 
 class User_detail_api(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class User_update_api(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class User_delete_api(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class Registro_list_api(generics.ListCreateAPIView):
+    queryset = Registro.objects.all()
+    serializer_class = RegistroSerializer
+
+class Registro_detail_api(generics.RetrieveAPIView):
+    queryset = Registro.objects.all()
+    serializer_class = RegistroSerializer
