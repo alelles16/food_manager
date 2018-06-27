@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^$', views.producto_list, name='main'),
     url(r'^register/$', views.register, name='register'),
     url(r'^consumir/(?P<pk>[0-9]+)/$', views.consumir_producto, name='consumir_producto'),
+    url(r'^productos_usuario/(?P<pk>[0-9]+)/$', views.productos_usuario, name='productos_usuario'),
 
     url(r'^api/productos/list/$', views.produto_list_api),
     url(r'^api/productos/list/(?P<pk>[0-9]+)/$', views.producto_detail_api),

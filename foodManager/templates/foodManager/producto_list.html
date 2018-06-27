@@ -118,6 +118,32 @@
 
         </div>
 
+        <div class="bagde bagde-win btn-icon">
+
+            <img src="{% static 'img/icons/circular-outlined-badge-with-ribbon-recognition-prize-symbol.svg' %}" alt="">
+            Listado de Usuarios
+
+        </div>
+
+        {% for usuario in usuarios %}
+
+        <div class="card-list box-shadow">
+
+            <div class="info-list">
+                <div class="info-list-name">
+                    <p> {{ usuario.first_name }} </p>
+                </div>
+            </div>
+
+            <div class="info-consumir">
+                <a href="{% url 'productos_usuario' pk=usuario.pk %}" class="btn-rounded btn-success btn-icon">
+                    <img src="{% static 'img/icons/add-circular-outlined-button.svg' %}" alt="Plus icon"> Conoce consumos </a>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
     </div>
 
 </div>

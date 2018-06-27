@@ -5,7 +5,7 @@ from .models import Producto, Registro
 class ProductoAdmin(admin.ModelAdmin):
     list_display = ['nombre', 'marca', 'cantidad_actual']
     list_filter = ('nombre', 'marca')
-    fields = ('nombre', 'marca')
+    fields = ('nombre', 'marca', 'cantidad_actual')
 
 @admin.register(Registro)
 class RegistroAdmin(admin.ModelAdmin):

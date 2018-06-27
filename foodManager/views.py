@@ -36,6 +36,7 @@ def register(request):
 
 def producto_list(request):
     productos = Producto.objects.order_by('-cantidad_actual')
+    usuarios = User.objects.all()
 
     def cantidad(consult):
         return Registro.objects.all().values(consult).annotate(total = Sum('cantidad_comprada')).order_by('-total').first()
@@ -55,7 +56,7 @@ def producto_list(request):
         print(e)
         mas_vendido = None
 
-    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido, 'mas_usuario' : mas_usuario, 'cantidad_mas_usuario' : cantidad_mas_usuario})
+    return render(request, 'foodManager/producto_list.html',{'productos' : productos, 'mas_vendido' : mas_vendido, 'mas_usuario' : mas_usuario, 'cantidad_mas_usuario' : cantidad_mas_usuario, 'usuarios': usuarios})
 
 @login_required
 def consumir_producto(request, pk):
@@ -89,6 +90,12 @@ def consumir_producto(request, pk):
         form = ConsumirForm()
         
     return render(request, 'foodManager/consumir_producto.html', {'producto' : producto, 'form' : form })
+
+def productos_usuario(request, pk):
+    productos = Producto.objects.filter(registro__usuario_id = pk).distinct()
+    usuario = get_object_or_404(User, pk = pk)
+    #registro_usuario = Registro.objects.all().filter(usuario__id = pk).values('producto')
+    return render(request, 'foodManager/lista_usuarios.html', {'productos': productos, 'usuario': usuario}) 
 
 class JSONResponse(HttpResponse):
 
