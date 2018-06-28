@@ -30,4 +30,4 @@ class Registro (models.Model):
         super(Registro, self).save(*args, **kwargs)
 
     def __str__ (self):
-        return '{} - {}'.format(self.producto.nombre, self.cantidad_comprada)
+        return '{} - {} - {}'.format(self.producto.nombre, self.usuario.first_name, self.cantidad_comprada)

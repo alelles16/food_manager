@@ -1,0 +1,60 @@
+{% extends 'foodManager/base.html' %} 
+{% block content %} 
+{% load staticfiles %}
+
+    <div class="wrap">
+
+        <header class="wheader">
+
+            <div class="wrap-header">
+                {% if user.is_authenticated %}
+                <p>Bienvenid@, {{ user.first_name }}!</p>
+                <a href="{% url 'logout' %}" class="btn-icon btn-gray btn-rounded">
+                    <img src="{% static 'img/icons/lock-circular-padlock-outline-tool-symbol.svg' %}" alt="">
+                    Salir
+                </a>
+                {% else %}
+                <a style="margin-right: 8px" href="{% url 'login' %}" class="btn-icon btn-gray btn-rounded">
+                    <img src="{% static 'img/icons/user-outline-male-symbol-of-interface.svg' %}" alt="">
+                    Ingresar
+                </a>
+                <a href="{% url 'register' %}" class="btn-icon btn-gray btn-rounded">
+                    <img src="{% static 'img/icons/pencil-big-outlined-vertical-tool-symbol.svg' %}" alt="">
+                    Registro
+                </a>
+                {% endif %}
+            </div>
+    
+        </header>
+    
+        <div class="list-products">
+
+            <div class="bagde bagde-win btn-icon">
+
+                <img src="{% static 'img/icons/circular-outlined-badge-with-ribbon-recognition-prize-symbol.svg' %}" alt="">
+                Usuari@ : {{ usuario.first_name }}
+    
+            </div>
+
+            {% for producto in productos %}
+
+            <div class="card-list box-shadow">
+
+                <div class="info-list">
+                    <div class="info-list-name">
+                        <p> {{ producto.nombre }} </p>
+                    </div>
+                </div>
+                <div class="info-list-details color-gray">
+                    <p>Cantidad comprada: {{ producto.cantidad_comprada }} unidad(es) </p>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
